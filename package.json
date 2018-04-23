@@ -11,6 +11,9 @@
   "author": "Imtiaz Hossain Emu",
   "license": "MIT",
   "dependencies": {
+    "bootstrap": "^4.1.0",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.3",
     "react": "^16.3.2",
     "react-dom": "^16.3.2"
   },
@@ -20,6 +23,10 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "css-loader": "^0.28.11",
+    "file-loader": "^1.1.11",
+    "style-loader": "^0.21.0",
+    "url-loader": "^1.0.1",
     "webpack": "^4.6.0",
     "webpack-dev-server": "^3.1.3"
   }
