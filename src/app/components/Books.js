@@ -5,8 +5,9 @@ export class Books extends React.Component {
   render() {
     return (
       <div className="row mb-2">
-        <BookDetail/>
-        <BookDetail/>
+        {
+            this.props.books.map((book) => <BookDetail key={book.id} detail={book}/>)
+        }
       </div>
     );
   }

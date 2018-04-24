@@ -25,7 +25,7 @@ var config = {
         test: /\.css$/,
         loader: "style-loader!css-loader"
       },
-      { test: /.scss$/ },
+      {test: /.scss$/},
       {
         test: /\.png$/,
         loader: "url-loader?limit=100000"
@@ -49,6 +49,10 @@ var config = {
       {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
         loader: 'url?limit=10000&mimetype=image/svg+xml'
+      },
+      {
+        test: /\.json$/,
+        loader: 'json-loader'
       }
     ]
   }
