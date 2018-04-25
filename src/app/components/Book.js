@@ -1,8 +1,6 @@
-// It needs to be change
-
 import React from 'react';
 
-export class BookDetail extends React.Component {
+export class Book extends React.Component {
   constructor(props){
     super();
     this.state = {
@@ -10,9 +8,9 @@ export class BookDetail extends React.Component {
     }
   }
 
-  upvote(){
+  upvote(event){
     this.setState({
-      rate: this.state.rate + 1
+      rate: event.target.value
     });
   }
 
@@ -28,7 +26,7 @@ export class BookDetail extends React.Component {
             <div className="mb-1 text-muted">Rating: {this.state.rate}</div>
             <p className="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to
               additional content.</p>
-            <a onClick={() => this.upvote()}>Upvote</a>
+            <input type="text" value={this.state.rate} onChange={(event) => this.upvote(event)}/>
           </div>
           <img className="card-img-right flex-auto d-none d-lg-block book-cover"
                alt="Thumbnail [200x250]"

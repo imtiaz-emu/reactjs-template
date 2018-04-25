@@ -1,12 +1,12 @@
 import React from 'react';
-import { BookDetail } from './BookDetail';
+import { Book } from './Book';
 
 export class Books extends React.Component {
   render() {
     return (
       <div className="row mb-2">
         {
-            this.props.books.map((book) => <BookDetail key={book.id} detail={book}/>)
+            this.props.books.map((book) => <Book key={book.id} detail={book}/>)
         }
       </div>
     );
