@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 export class Header extends React.Component {
   render() {
@@ -9,7 +10,7 @@ export class Header extends React.Component {
             <div className="col-4 pt-1">
             </div>
             <div className="col-4 text-center">
-              <a className="blog-header-logo text-dark" href="#">Library</a>
+              <Link className="blog-header-logo text-dark" to={"/"}>Library</Link>
             </div>
             <div className="col-4 d-flex justify-content-end align-items-center">
               <a className="text-muted" href="#">
@@ -29,7 +30,7 @@ export class Header extends React.Component {
             <a className="p-2 text-muted" href="#">Categories</a>
             <a className="p-2 text-muted" href="#">Authors</a>
             <a className="p-2 text-muted" href="#">Publishers</a>
-            <a className="p-2 text-muted" href="#">Books</a>
+            <Link className="p-2 text-muted" to={"/books"}>Books</Link>
             <a className="p-2 text-muted" href="#">Contests</a>
           </nav>
         </div>

@@ -11,6 +11,7 @@ var config = {
     publicPath: "/app/"
   },
   mode: 'development',
+  devtool: 'inline-source-map',
   module: {
     rules: [
       {

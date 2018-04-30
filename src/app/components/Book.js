@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 export class Book extends React.Component {
   constructor(props){
@@ -21,7 +22,7 @@ export class Book extends React.Component {
           <div className="card-body d-flex flex-column align-items-start">
             <strong className="d-inline-block mb-2 text-success">Design</strong>
             <h3 className="mb-0">
-              <a className="text-dark" href="#">{this.props.detail.name}</a>
+              <Link className="text-dark" to={"/books/" + this.props.detail.id}>{this.props.detail.name}</Link>
             </h3>
             <div className="mb-1 text-muted">Rating: {this.state.rate}</div>
             <p className="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to

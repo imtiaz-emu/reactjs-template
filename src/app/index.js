@@ -8,6 +8,7 @@ import styles from './styles/blog.css';
 import {Root} from './components/Root';
 import {Home} from './components/Home';
 import {BookDetail} from './components/BookDetail';
+import {Books} from './components/Books';
 
 class App extends React.Component {
   render() {
@@ -16,7 +17,8 @@ class App extends React.Component {
         <div className="container">
           <Route path='/' component={Root}/>
           <Route exact path="/" component={Home}/>
-          <Route path='/book' component={BookDetail} />
+          <Route exact path='/books' component={Books} />
+          <Route path='/books/:id' component={BookDetail} />
         </div>
       </BrowserRouter>
     );
