@@ -3,7 +3,9 @@ import {render} from "react-dom";
 import {BrowserRouter, Route, Link, IndexRoute} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
-import styles from './styles/blog.css';
+import styles_1 from './styles/blog.css';
+import styles_2 from './styles/style.css';
+import styles_3 from './styles/custom.css';
 
 import {Root} from './components/Root';
 import {Home} from './components/Home';
