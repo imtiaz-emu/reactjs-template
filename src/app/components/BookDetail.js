@@ -4,10 +4,10 @@ import {LoadBooks} from '../utils/LoadBooks';
 export class BookDetail extends React.Component {
     constructor(props) {
         super();
-         this.state = {book: {}};
+        this.state = {book: {}};
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.getBookById(this.props.match.params.id);
     }
 
@@ -20,158 +20,53 @@ export class BookDetail extends React.Component {
             }
         });
         this.setState({book: new_state_book[0]});
-        console.log(this.state);
     }
 
     render() {
         return (
-            <div className="row book-detail-page">
-                <div className="col-md-8 col-sm-7 blog-posts">
-                    {/*<!-- Single Post -->*/}
-                    <div className="single-post">
-                        <div className="post-thumbnail row">
-                            <div className="col-md-6">
-                                <img src={this.state.book.image} alt=""/>
+            <section className="product-sec">
+                <div className="container">
+                    <h1>{this.state.book.name}</h1>
+                    <h3>by - {this.state.book.author}</h3>
+                    <div className="row">
+                        <div className="col-md-6 slider-sec">
+                            {/*<!-- main slider carousel -->*/}
+                            <div id="myCarousel" className="carousel slide">
+                                {/*<!-- main slider carousel items -->*/}
+                                <div className="carousel-inner">
+                                    <div className="active item carousel-item" data-slide-number="0">
+                                        <img src={this.state.book.image} className="img-fluid"/>
+                                    </div>
+                                </div>
+                                {/*<!-- main slider carousel nav controls -->*/}
                             </div>
-                            <div className="col-md-6">
-                                <h2>03</h2>
-                                <h3>Nov 2017</h3>
-                            </div>
+                            {/*<!--/main slider carousel-->*/}
                         </div>
-                        <div className="post-content">
-                            <h2 className="post-title">{this.state.book.name}</h2>
-                            <div className="post-meta">
-                                <a href="">Loredana Papp</a>
-                                <a href="">Design, Inspiration</a>
-                                <a href="">2 Comments</a>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec
-                                elementum id, suscipit id nulla. Phasellus vestibulum, quam tincidunt venenatis
-                                ultrices, est libero mattis ante, ac consectetur diam neque eget quam. Etiam feugiat
-                                augue et varius blandit. Praesent mattis, eros a sodales commodo.</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum, quam
-                                tincidunt venenatis ultrices, est libero mattis ante, ac consectetur diam neque eget
-                                quam. Etiam feugiat augue et varius blandit. Praesent mattis, eros a sodales commodo,
-                                justo ipsum rutrum mauris, sit amet egestas metus quam sed dolor. Sed consectetur, dui
-                                sed sollicitudin eleifend, arcu neque egestas lectus, sagittis viverra justo massa ut
-                                sapien. Aenean viverra ornare mauris eget lobortis. Cras vulputate elementum magna,
-                                tincidunt pharetra erat condimentum sit amet. Maecenas vitae ligula pretium, convallis
-                                magna eu, ultricies quam. In hac habitasse platea dictumst. </p>
-                            <p>Fusce vel tempus nunc. Phasellus et risus eget sapien suscipit efficitur. Suspendisse
-                                iaculis purus ornare urna egestas imperdiet. Nulla congue consectetur placerat. Integer
-                                sit amet auctor justo. Pellentesque vel congue velit. Sed ullamcorper lacus scelerisque
-                                condimentum convallis. Sed ac mollis sem. </p>
-                        </div>
-
-                        {/*<!-- Post Comments -->*/}
-                        <div className="comments">
-                            <h2>Comments (2)</h2>
-                            <ul className="comment-list">
+                        <div className="col-md-6 slider-content">
+                            <p>{this.state.book.description}</p>
+                            <ul>
                                 <li>
-                                    <div className="avatar">
-                                        <img src="img/avatar/01.jpg" alt=""/>
-                                    </div>
-                                    <div className="commetn-text">
-                                        <h3>Michael Smith | 03 nov, 2017 | Reply</h3>
-                                        <p>Vivamus in urna eu enim porttitor consequat. Proin vitae pulvinar libero.
-                                            Proin ut hendrerit metus. Aliquam erat volutpat. Donec fermen tum convallis
-                                            ante eget tristique. </p>
-                                    </div>
+                                    <span className="name">Digital List Price</span><span className="clm">:</span>
+                                    <span className="price">$4.71</span>
                                 </li>
                                 <li>
-                                    <div className="avatar">
-                                        <img src="img/avatar/02.jpg" alt=""/>
-                                    </div>
-                                    <div className="commetn-text">
-                                        <h3>Michael Smith | 03 nov, 2017 | Reply</h3>
-                                        <p>Vivamus in urna eu enim porttitor consequat. Proin vitae pulvinar libero.
-                                            Proin ut hendrerit metus. Aliquam erat volutpat. Donec fermen tum convallis
-                                            ante eget tristique. </p>
-                                    </div>
+                                    <span className="name">Print List Price</span><span className="clm">:</span>
+                                    <span className="price">$10.99</span>
                                 </li>
+                                <li>
+                                    <span className="name">Kindle Price</span><span className="clm">:</span>
+                                    <span className="price final">$3.37</span>
+                                </li>
+                                <li><span className="save-cost">Save $7.62 (69%)</span></li>
                             </ul>
-                        </div>
-                        {/*<!-- Commert Form -->*/}
-                        <div className="row">
-                            <div className="col-md-9 comment-from">
-                                <h2>Leave a comment</h2>
-                                <form className="form-class">
-                                    <div className="row">
-                                        <div className="col-sm-6">
-                                            <input type="text" name="name" placeholder="Your name"/>
-                                        </div>
-                                        <div className="col-sm-6">
-                                            <input type="text" name="email" placeholder="Your email"/>
-                                        </div>
-                                        <div className="col-sm-12">
-                                            <input type="text" name="subject" placeholder="Subject"/>
-                                            <textarea name="message" placeholder="Message"></textarea>
-                                            <button className="site-btn">send</button>
-                                        </div>
-                                    </div>
-                                </form>
+                            <div className="btn-sec">
+                                <button className="btn ">Add To cart</button>
+                                <button className="btn black">Buy Now</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                {/*<!-- Sidebar area -->*/}
-                <div className="col-md-4 col-sm-5 sidebar">
-                    {/*<!-- Single widget -->*/}
-                    <div className="widget-item">
-                        <h2 className="widget-title">Categories</h2>
-                        <ul>
-                            <li><a href="#">Vestibulum maximus</a></li>
-                            <li><a href="#">Nisi eu lobortis pharetra</a></li>
-                            <li><a href="#">Orci quam accumsan </a></li>
-                            <li><a href="#">Auguen pharetra massa</a></li>
-                            <li><a href="#">Tellus ut nulla</a></li>
-                            <li><a href="#">Etiam egestas viverra </a></li>
-                        </ul>
-                    </div>
-                    {/*<!-- Single widget -->*/}
-                    <div className="widget-item">
-                        <h2 className="widget-title">Instagram</h2>
-                        <ul className="instagram">
-                            <li><img src="img/instagram/1.jpg" alt=""/></li>
-                            <li><img src="img/instagram/2.jpg" alt=""/></li>
-                            <li><img src="img/instagram/3.jpg" alt=""/></li>
-                            <li><img src="img/instagram/4.jpg" alt=""/></li>
-                            <li><img src="img/instagram/5.jpg" alt=""/></li>
-                            <li><img src="img/instagram/6.jpg" alt=""/></li>
-                        </ul>
-                    </div>
-                    {/*<!-- Single widget -->*/}
-                    <div className="widget-item">
-                        <h2 className="widget-title">Tags</h2>
-                        <ul className="tag">
-                            <li><a href="">branding</a></li>
-                            <li><a href="">identity</a></li>
-                            <li><a href="">video</a></li>
-                            <li><a href="">design</a></li>
-                            <li><a href="">inspiration</a></li>
-                            <li><a href="">web design</a></li>
-                            <li><a href="">photography</a></li>
-                        </ul>
-                    </div>
-                    {/*<!-- Single widget -->*/}
-                    <div className="widget-item">
-                        <h2 className="widget-title">Quote</h2>
-                        <div className="quote">
-                            <span className="quotation">‘​‌‘​‌</span>
-                            <p>Vivamus in urna eu enim porttitor consequat. Proin vitae pulvinar libero. Proin ut
-                                hendrerit metus. Aliquam erat volutpat. Donec fermen tum convallis ante eget tristique.
-                                Sed lacinia turpis at ultricies vestibulum.</p>
-                        </div>
-                    </div>
-                    {/*<!-- Single widget -->*/}
-                    <div className="widget-item">
-                        <h2 className="widget-title">Add</h2>
-                        <div className="add">
-                            <a href=""><img src="img/add.jpg" alt=""/></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </section>
         );
     }
 }

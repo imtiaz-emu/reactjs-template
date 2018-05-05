@@ -2,38 +2,41 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 export class Book extends React.Component {
-  constructor(props){
-    super();
-    this.state = {
-      rate: props.detail.rating
+    constructor(props) {
+        super();
+        this.state = {
+            rate: props.detail.rating
+        }
     }
-  }
 
-  upvote(event){
-    this.setState({
-      rate: event.target.value
-    });
-  }
+    upvote(event) {
+        this.setState({
+            rate: event.target.value
+        });
+    }
 
-  render() {
-    return (
-      <div className="col-md-6">
-        <div className="card flex-md-row mb-4 box-shadow h-md-250">
-          <div className="card-body d-flex flex-column align-items-start">
-            <strong className="d-inline-block mb-2 text-success">Design</strong>
-            <h3 className="mb-0">
-              <Link className="text-dark" to={"/books/" + this.props.detail.id}>{this.props.detail.name}</Link>
-            </h3>
-            <div className="mb-1 text-muted">Rating: {this.state.rate}</div>
-            <p className="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to
-              additional content.</p>
-            <input type="text" value={this.state.rate} onChange={(event) => this.upvote(event)}/>
-          </div>
-          <img className="card-img-right flex-auto d-none d-lg-block book-cover"
-               alt="Thumbnail [200x250]"
-               src={this.props.detail.image}/>
-        </div>
-      </div>
-    );
-  }
+    render() {
+        let customClass = '';
+        let hoverItem = (
+            <div className="hover">
+                <a href="product-single.html">
+                    <span><i className="fa fa-long-arrow-right" aria-hidden="true"></i></span>
+                </a>
+            </div>
+        );
+        if (window.location.pathname == '/books'){
+            customClass = 'book-item';
+            hoverItem = '';
+        }
+        return (
+            <div className="col-lg-3 col-md-6">
+                <div className={"item " + customClass}>
+                    <img src={this.props.detail.image} alt="img"/>
+                    <h3><Link to={"books/" + this.props.detail.id}>{this.props.detail.name}</Link></h3>
+                    <h6><span className="price">$49</span> / <a href="#">Buy Now</a></h6>
+                    {hoverItem}
+                </div>
+            </div>
+        );
+    }
 }

@@ -16,12 +16,11 @@ class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
-        <div className="container">
-          <Route path='/' component={Root}/>
+        <Root>
           <Route exact path="/" component={Home}/>
           <Route exact path='/books' component={Books} />
           <Route path='/books/:id' component={BookDetail} />
-        </div>
+        </Root>
       </BrowserRouter>
     );
   };
