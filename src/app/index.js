@@ -9,6 +9,8 @@ import styles_3 from './styles/custom.css';
 
 import {Root} from './components/Root';
 import {Home} from './components/Home';
+import {Login} from './components/authentication/Login';
+import {Register} from './components/authentication/Register';
 import {BookDetail} from './components/BookDetail';
 import {Books} from './components/Books';
 
@@ -18,6 +20,8 @@ class App extends React.Component {
       <BrowserRouter>
         <Root>
           <Route exact path="/" component={Home}/>
+          <Route exact path="/login" component={Login}/>
+          <Route exact path="/register" component={Register}/>
           <Route exact path='/books' component={Books} />
           <Route path='/books/:id' component={BookDetail} />
         </Root>

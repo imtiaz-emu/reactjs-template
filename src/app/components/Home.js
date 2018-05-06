@@ -3,6 +3,7 @@ import React from "react";
 import {Scroller} from './Scroller';
 import {Books} from './Books';
 import {LoadBooks} from '../utils/LoadBooks';
+import about_img from '../images/about-img.jpg';
 
 export class Home extends React.Component {
     constructor(props) {
@@ -29,8 +30,7 @@ export class Home extends React.Component {
 
                 <section className="about-sec">
                     <div className="about-img">
-                        <figure style={ { backgroundImage: `url(require("../images/about-img.jpg"))` } }></figure>
-                        {/*<figure style={"background:url(./images/about-img.jpg)no-repeat;"}></figure>*/}
+                        <figure style={ { backgroundImage: about_img } }></figure>
                     </div>
                     <div className="about-content">
                         <h2>About bookstore,</h2>
