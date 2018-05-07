@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Redirect, withRouter} from 'react-router-dom';
 import api from '../../utils/EndPoint';
 
 export class Login extends React.Component {
@@ -12,7 +12,9 @@ export class Login extends React.Component {
         email: '',
         password: '',
         remember_me: ''
-      }
+      },
+      display_errors: false,
+      errors: []
     }
   }
 
@@ -24,7 +26,6 @@ export class Login extends React.Component {
 
   handleSubmit(event) {
     if (!event.target.checkValidity()) {
-      console.log("inValid");
       return;
     }
 
@@ -43,10 +44,15 @@ export class Login extends React.Component {
         remember_me: remember_me
       }),
     })
-    .then(function (response) {
-      console.log(response);
-    }, function (error) {
-      console.log(error);
+    .then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(response => {
+      if (typeof response.access_token == "undefined")
+        this.setState({display_errors: true, errors: response.error.user_authentication});
+      else{
+        localStorage.setItem('jwtToken', response.access_token);
+        this.props.history.push('/');
+      }
     });
 
     event.preventDefault();
@@ -60,6 +66,13 @@ export class Login extends React.Component {
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
               industry's printer took a galley of type and scrambled it to make a type specimen book. It has survived
               not only fiveLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem </p>
+            <div className={"alert-warning " + (this.state.display_errors ? 'alert show' : 'hidden')} role="alert">
+              <ul>
+                {this.state.errors.map((error, i) => {
+                  return <li key={i}>{error}</li>
+                })}
+              </ul>
+            </div>
             <div className="form">
               <form noValidate onSubmit={this.handleSubmit}>
                 <div className="row">
@@ -101,3 +114,5 @@ export class Login extends React.Component {
     );
   }
 }
+
+export default withRouter(Login)
