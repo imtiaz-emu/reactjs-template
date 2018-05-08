@@ -1,6 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {Redirect} from 'react-router';
+import {Link, withRouter, Redirect} from 'react-router-dom';
 import logo from '../images/logo.png';
 import logInfo from '../utils/EndPoint';
 
@@ -9,11 +8,10 @@ export class Header extends React.Component {
     super();
   }
 
-  handleLogout(){
+  handleLogout() {
     localStorage.removeItem('jwtToken');
-    <Redirect push to="/books"/>
-  };
-
+    window.location.href = '/';
+  }
 
   render() {
     let isLoggedIn = logInfo.is_logged_in();
