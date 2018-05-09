@@ -24,3 +24,8 @@ footer {
     width: auto;
     height: auto;
 }
+.static .form input{
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+.help-block{ color: red}

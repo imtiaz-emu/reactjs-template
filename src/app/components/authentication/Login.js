@@ -25,6 +25,7 @@ export class Login extends React.Component {
   }
 
   handleSubmit(event) {
+    event.preventDefault();
     if (!event.target.checkValidity()) {
       return;
     }
@@ -54,8 +55,6 @@ export class Login extends React.Component {
         this.props.history.push('/');
       }
     });
-
-    event.preventDefault();
   }
 
   render() {

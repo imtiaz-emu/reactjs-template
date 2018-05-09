@@ -11,6 +11,7 @@ export class Register extends React.Component {
     this.state = {
       formData: {
         email: {value: '', isValid: true, message: ''},
+        name: {value: '', isValid: true, message: ''},
         password: {value: '', isValid: true, message: ''},
         password_confirmation: {value: '', isValid: true, message: ''}
       },
@@ -21,12 +22,13 @@ export class Register extends React.Component {
 
   handleInputChange(e) {
     let formData = Object.assign({}, this.state.formData);
-    formData[e.target.name] = e.target.value;
+    formData[e.target.name]['value'] = e.target.value;
     this.setState({formData});
   }
 
   validateForm() {
     var state = this.state.formData;
+
     if (!validator.isEmail(state.email.value)) {
       state.email.isValid = false;
       state.email.message = 'Not a valid email address';
@@ -44,15 +46,25 @@ export class Register extends React.Component {
       return false;
     }
 
+    if (state.name.value.length < 6 || !state.name.value.match(/^[a-zA-Z0-9]+$/)) {
+      state.name.isValid = false;
+      state.name.message = "Username must contain only letters and should atleast 6 characters long."
+    }
+
+    state.password_confirmation.message = '';
+    state.email.message = '';
+    this.setState(state);
     return true;
   }
 
   handleSubmit(event) {
+    event.preventDefault();
+
     if (!this.validateForm()) {
-      return;
+      return false;
     }
 
-    const {email, password, password_confirmation} = this.state.formData;
+    const {email, name, password, password_confirmation} = this.state.formData;
     const url = api.api_url + "auth/register";
 
     // fetch(url, {
@@ -78,11 +90,10 @@ export class Register extends React.Component {
     //       }
     //     });
     //
-    // event.preventDefault();
   }
 
   render() {
-    var {email, password, password_confirmation} = this.state.formData;
+    var {email, name, password, password_confirmation} = this.state.formData;
     return (
         <section className="static about-sec">
           <div className="container">
@@ -98,37 +109,45 @@ export class Register extends React.Component {
               </ul>
             </div>
             <div className="form">
-              <form noValidate onSubmit={this.handleSubmit}>
+              <form onSubmit={this.handleSubmit}>
                 <div className="row">
-                  <div className="col-md-4">
+                  <div className="col-md-6">
                     <input
                         type="email" autoFocus
-                        name="email" value={email.value}
+                        name="email" value={this.state.formData.email.value}
                         placeholder="Enter Email"
                         onChange={this.handleInputChange}
                         required/>
-                    <span className="required-star">{email.message}</span>
+                    <small className="help-block">{email.message}</small>
                   </div>
-                  <div className="col-md-4">
+                  <div className="col-md-6">
+                    <input
+                        type="text" autoFocus
+                        name="name" value={this.state.formData.name.value}
+                        placeholder="Enter Username"
+                        onChange={this.handleInputChange}
+                        required/>
+                    <small className="help-block">{name.message}</small>
+                  </div>
+                  <div className="col-md-6">
                     <input
                         name="password"
-                        type="password" value={password.value}
+                        type="password" value={this.state.formData.password.value}
                         placeholder="Password"
                         onChange={this.handleInputChange}
                         required/>
-                    <span className="required-star">{password.message}</span>
                   </div>
-                  <div className="col-md-4">
+                  <div className="col-md-6">
                     <input
                         name="password_confirmation"
-                        type="password" value={password_confirmation.value}
+                        type="password" value={this.state.formData.password_confirmation.value}
                         placeholder="Password Confirmation"
                         onChange={this.handleInputChange}
                         required/>
-                    <span className="required-star">{password_confirmation.message}</span>
+                    <small className="help-block">{password_confirmation.message}</small>
                   </div>
                   <div className="col-lg-8 col-md-12">
-                    <button className="btn black">Register</button>
+                    <button type="submit" className="btn black">Register</button>
                     <h5>not Registered? <Link to={"/login"}>Login here</Link></h5>
                   </div>
                 </div>
