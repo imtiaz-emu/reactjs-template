@@ -46,9 +46,9 @@ export class Register extends React.Component {
       return false;
     }
 
-    if (state.name.value.length < 6 || !state.name.value.match(/^[a-zA-Z0-9]+$/)) {
+    if (state.name.value.length < 5 || !state.name.value.match(/^[a-zA-Z0-9]+$/)) {
       state.name.isValid = false;
-      state.name.message = "Username must contain only letters and should atleast 6 characters long."
+      state.name.message = "Username must contain only letters and should atleast 5 characters long."
     }
 
     state.password_confirmation.message = '';
@@ -67,29 +67,31 @@ export class Register extends React.Component {
     const {email, name, password, password_confirmation} = this.state.formData;
     const url = api.api_url + "auth/register";
 
-    // fetch(url, {
-    //   method: 'POST',
-    //   headers: new Headers({
-    //     Accept: 'application/json',
-    //     'Content-Type': 'application/json',
-    //   }),
-    //   body: JSON.stringify({
-    //     email: email,
-    //     password: password,
-    //     remember_me: remember_me
-    //   }),
-    // })
-    //     .then(res => res.json())
-    //     .catch(error => console.error('Error:', error))
-    //     .then(response => {
-    //       if (typeof response.access_token == "undefined")
-    //         this.setState({display_errors: true, errors: response.error.user_authentication});
-    //       else {
-    //         localStorage.setItem('jwtToken', response.access_token);
-    //         this.props.history.push('/');
-    //       }
-    //     });
-    //
+    fetch(url, {
+      method: 'POST',
+      headers: new Headers({
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }),
+      body: JSON.stringify({
+        email: email.value,
+        password: password.value,
+        name: name.value
+      }),
+    })
+        .then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(response => {
+          if (typeof response.message == "undefined")
+            this.setState({display_errors: true, errors: response});
+          else {
+            this.props.history.push({
+              pathname: '/',
+              state: {message: response.message}
+            });
+          }
+        });
+
   }
 
   render() {
@@ -103,8 +105,12 @@ export class Register extends React.Component {
               not only fiveLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem </p>
             <div className={"alert-danger " + (this.state.display_errors ? 'alert show' : 'hidden')} role="alert">
               <ul>
-                {this.state.errors.map((error, i) => {
-                  return <li key={i}>{error}</li>
+                { Object.keys(this.state.errors).map((key, i) => {
+                  return this.state.errors[key].map((error, i) => {
+                    return <li key={i}>{key + ": " + error}</li>
+                  });
+                  {/*return <li key={i}>{key + ": " + this.state.errors[key][0]}</li>*/
+                  }
                 })}
               </ul>
             </div>
