@@ -49,7 +49,7 @@ export class Header extends React.Component {
                       <a href="faq.html" className="nav-link">Authors</a>
                     </li>
                     <li className="navbar-item">
-                      <a href="login.html" className="nav-link">Publishers</a>
+                      <Link to={'/publishers'} className="nav-link">Publishers</Link>
                     </li>
                     <li className="navbar-item">
                       <a href="login.html" className="nav-link">About</a>

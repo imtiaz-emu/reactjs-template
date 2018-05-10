@@ -13,6 +13,8 @@ import {Login} from './components/authentication/Login';
 import {Register} from './components/authentication/Register';
 import {BookDetail} from './components/BookDetail';
 import {Books} from './components/Books';
+import {PublisherDetail} from './components/publisher/PublisherDetail';
+import {Publishers} from './components/publisher/Publishers';
 
 class App extends React.Component {
   render() {
@@ -24,6 +26,8 @@ class App extends React.Component {
           <Route exact path="/register" component={Register}/>
           <Route exact path='/books' component={Books} />
           <Route path='/books/:id' component={BookDetail} />
+          <Route exact path='/publishers' component={Publishers} />
+          <Route path='/publishers/:id' component={PublisherDetail} />
         </Root>
       </BrowserRouter>
     );

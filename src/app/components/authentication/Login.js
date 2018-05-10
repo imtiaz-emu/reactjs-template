@@ -52,7 +52,10 @@ export class Login extends React.Component {
         this.setState({display_errors: true, errors: response.error.user_authentication});
       else{
         localStorage.setItem('jwtToken', response.access_token);
-        this.props.history.push('/');
+        this.props.history.push({
+          pathname: '/',
+          state: {message: response.message}
+        });
       }
     });
   }

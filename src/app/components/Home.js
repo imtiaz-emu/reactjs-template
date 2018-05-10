@@ -16,8 +16,11 @@ export class Home extends React.Component {
     if (typeof this.props.location.state != 'undefined') {
       flashMessage = (
           <div className="container">
-            <div className="alert alert-success" role="alert">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
               {this.props.location.state.message}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
           </div>
       )
