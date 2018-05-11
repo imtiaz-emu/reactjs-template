@@ -1,17 +1,27 @@
 var path = require('path');
 
-var DIST_DIR = path.resolve(__dirname, 'dist');
-var SRC_DIR = path.resolve(__dirname, 'src');
+var DIST_DIR = path.resolve('dist');
+var SRC_DIR = path.resolve('src');
 
 var config = {
-  entry: SRC_DIR + "/app/index.js",
+  entry: {
+    bundle: SRC_DIR + '/app/index.js'
+  },
   output: {
-    path: DIST_DIR + "/app",
-    filename: "bundle.js",
-    publicPath: "/app/"
+    path: DIST_DIR,
+    filename: '[name].js'
   },
   mode: 'development',
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
+  devServer: {
+    contentBase: './src',
+    port: 9000,
+    open: true,
+    historyApiFallback: true,
+    watchOptions: {
+      ignored: /node_modules/
+    }
+  },
   module: {
     rules: [
       {
@@ -56,6 +66,17 @@ var config = {
         loader: 'json-loader'
       }
     ]
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
+          chunks: 'all'
+        }
+      }
+    }
   }
 };
 
