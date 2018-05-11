@@ -5,7 +5,9 @@ import {Provider} from 'react-redux';
 import App from "./components/App";
 
 const saveUserData = (state = {
-  user: {}
+  currentUser: {},
+  display_errors: false,
+  errors: []
 }, action) => {
   switch (action.type) {
     case "UPDATE_USER":
@@ -13,9 +15,15 @@ const saveUserData = (state = {
           ...state,
           user: action.payload
       };
-      break;
+     case "DISPLAY_LOGIN_ERRORS":
+      state = {
+          ...state,
+          errors: action.payload,
+          display_errors: true
+      };
+     default:
+      return state;
   }
-  return state;
 };
 
 const store = createStore(saveUserData);

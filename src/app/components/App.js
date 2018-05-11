@@ -16,39 +16,22 @@ import {Books} from './Books';
 import {PublisherDetail} from './publisher/PublisherDetail';
 import {Publishers} from './publisher/Publishers';
 
-class App extends React.Component {
-  render() {
+
+
+const App = () => {
     return (
         <BrowserRouter>
-          <Root>
-            <Route exact path="/" component={Home}/>
-            <Route exact path="/login" component={Login}/>
-            <Route exact path="/register" component={Register}/>
-            <Route exact path='/books' component={Books}/>
-            <Route path='/books/:id' component={BookDetail}/>
-            <Route exact path='/publishers' component={Publishers}/>
-            <Route path='/publishers/:id' component={PublisherDetail}/>
-          </Root>
+            <Root>
+                <Route exact path="/" component={Home}/>
+                <Route exact path="/login" component={Login}/>
+                <Route exact path="/register" component={Register}/>
+                <Route exact path='/books' component={Books}/>
+                <Route path='/books/:id' component={BookDetail}/>
+                <Route exact path='/publishers' component={Publishers}/>
+                <Route path='/publishers/:id' component={PublisherDetail}/>
+            </Root>
         </BrowserRouter>
     );
-  };
 }
 
-const mapStateToProps = (state) => {
-  return {
-    userData: state.saveUserData
-  }
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    updateUser: (user) => {
-      dispatch({
-        type: "UPDATE_USER",
-        payload: user
-      })
-    }
-  }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default App;
