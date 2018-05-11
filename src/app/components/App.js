@@ -9,7 +9,7 @@ import styles_3 from '../styles/custom.css';
 
 import {Root} from './Root';
 import {Home} from './Home';
-import {Login} from './authentication/Login';
+import Login from './authentication/Login';
 import {Register} from './authentication/Register';
 import {BookDetail} from './BookDetail';
 import {Books} from './Books';
@@ -17,21 +17,22 @@ import {PublisherDetail} from './publisher/PublisherDetail';
 import {Publishers} from './publisher/Publishers';
 
 
-
 const App = () => {
-    return (
-        <BrowserRouter>
-            <Root>
-                <Route exact path="/" component={Home}/>
-                <Route exact path="/login" component={Login}/>
-                <Route exact path="/register" component={Register}/>
-                <Route exact path='/books' component={Books}/>
-                <Route path='/books/:id' component={BookDetail}/>
-                <Route exact path='/publishers' component={Publishers}/>
-                <Route path='/publishers/:id' component={PublisherDetail}/>
-            </Root>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Root>
+        <Route exact path="/" component={Home}/>
+        <Route exact path="/login" render={() => (
+          <Login/>
+        )}/>
+        <Route exact path="/register" component={Register}/>
+        <Route exact path='/books' component={Books}/>
+        <Route path='/books/:id' component={BookDetail}/>
+        <Route exact path='/publishers' component={Publishers}/>
+        <Route path='/publishers/:id' component={PublisherDetail}/>
+      </Root>
+    </BrowserRouter>
+  );
 }
 
 export default App;
