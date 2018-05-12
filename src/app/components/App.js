@@ -8,7 +8,7 @@ import styles_2 from '../styles/style.css';
 import styles_3 from '../styles/custom.css';
 
 import {Root} from './Root';
-import {Home} from './Home';
+import Home from './Home';
 import Login from './authentication/Login';
 import {Register} from './authentication/Register';
 import {BookDetail} from './BookDetail';
@@ -21,9 +21,11 @@ const App = () => {
   return (
     <BrowserRouter>
       <Root>
-        <Route exact path="/" component={Home}/>
-        <Route exact path="/login" render={() => (
-          <Login/>
+        <Route exact path="/" render={(routeProps) => (
+          <Home {...routeProps}/>
+        )}/>
+        <Route exact path="/login" render={(routeProps) => (
+          <Login {...routeProps}/>
         )}/>
         <Route exact path="/register" component={Register}/>
         <Route exact path='/books' component={Books}/>
