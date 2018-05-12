@@ -13,7 +13,7 @@ class UserState {
 
     switch (action.type) {
       case ActionTypes.UPDATE_USER:
-        newState.user = action.payload;
+        newState.current = action.payload;
         return newState;
 
       default:
