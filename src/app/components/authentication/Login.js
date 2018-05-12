@@ -59,7 +59,7 @@ export class Login extends React.Component {
         }
 
         if (!this.props.shouldDisplayError && !this.props.errors) {
-          window.open('/', '_self');
+          this.props.history.push('/', {message: 'Successfully logged in!'});
         }
       }).catch(error => console.error('Error:', error));
   }
