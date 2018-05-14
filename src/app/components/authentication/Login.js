@@ -55,7 +55,8 @@ export class Login extends React.Component {
           this.props.displayErrors(response.error.user_authentication);
         } else {
           localStorage.setItem('jwtToken', response.access_token);
-          this.props.updateUser(response.user);
+          localStorage.setItem('current_profile_id', response.profile.id);
+          this.props.updateUser(response.profile);
         }
 
         if (!this.props.shouldDisplayError && !this.props.errors) {

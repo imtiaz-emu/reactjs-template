@@ -10,6 +10,7 @@ export class Header extends React.Component {
 
   handleLogout() {
     localStorage.removeItem('jwtToken');
+    localStorage.removeItem('current_profile_id');
     window.location.href = '/';
   }
 
